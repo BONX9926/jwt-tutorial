@@ -1,3 +1,7 @@
 api/node_modules
 api/package-lock*
 api/yarn*
+
+frontend/node_modules
+frontend/package-lock*
+frontend/yarn*
