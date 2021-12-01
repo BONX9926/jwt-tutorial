@@ -4,13 +4,14 @@ import { signJWT, verifyJWT } from "../utils/jwt.utils"
 
 function deserializeUser(req: Request, res: Response, next: NextFunction) {
   const { accessToken, refreshToken } = req.cookies
-
+  console.log({ accessToken, refreshToken });
+  
   if (!accessToken) {
     return next()
   }
 
   const { payload, expired } = verifyJWT(accessToken)
-
+  
   if (payload) {
     // @ts-ignore
     req.user = payload

@@ -1,40 +1,42 @@
 const users = [
   {
     email: "bon@email.com",
-    password: "password",
+    password: "654321",
     name: "B.atiwat"
   }
 ]
 
 export const sessions: Record<
   string,
-  { sessionId: string, email: string, valid: boolean }
+  { sessionId: string; email: string; valid: boolean }
 > = {};
 
 export function getSession(sessionId: string) {
-  const session = sessions[sessionId]
+  const session = sessions[sessionId];
+
   return session && session.valid ? session : null;
 }
 
 export function invalidateSession(sessionId: string) {
-  const session = sessions[sessionId]
+  const session = sessions[sessionId];
 
   if (session) {
-    sessions[sessionId].valid = false
+    sessions[sessionId].valid = false;
   }
 
-  return session
+  return sessions[sessionId];
 }
 
 export function createSession(email: string, name: string) {
-  const sessionId = String(Object.keys(sessions).length + 1)
-  const session = { sessionId, email, valid: true, name }
+  const sessionId = String(Object.keys(sessions).length + 1);
 
-  sessions[sessionId] = session
+  const session = { sessionId, email, valid: true, name };
 
-  return session
+  sessions[sessionId] = session;
+
+  return session;
 }
 
 export function getUser(email: string) {
-  return users.find((user) => user.email === email)
+  return users.find((user) => user.email === email);
 }
